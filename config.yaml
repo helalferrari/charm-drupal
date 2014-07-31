@@ -41,6 +41,10 @@ options:
     type: string
     default: ""
     description: "A deploy ssh key that is stored on the server and grants access to a Git repository, for example."
+  deploy-pub-key:
+    type: string
+    default: ""
+    description: "A deploy ssh id-rsa public key that is stored on the server and grants access to a Git repository, for example."
   drupal-db-dump:
     type: string
     default: ""

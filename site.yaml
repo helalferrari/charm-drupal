@@ -33,6 +33,22 @@
       tags:
         - config-changed
 
+    - name: "Copy public SSH key."
+      shell: >
+        echo "{{ deploy_pub_key }}" > /home/ubuntu/.ssh/id_rsa.pub
+        creates=/home/ubuntu/.ssh/id_rsa.pub
+      when: deploy_pub_key != ''
+      tags:
+        - config-changed
+    - file: >
+        path=/home/ubuntu/.ssh/id_rsa.pub
+        mode=400
+        owner=ubuntu
+        group=ubuntu
+      when: deploy_pub_key != ''
+      tags:
+        - config-changed
+
     - name: "Set permissions for the /var/www directory."
       file: path=/var/www mode=6755 owner=ubuntu group=www-data state=directory recurse=yes
       sudo: yes
